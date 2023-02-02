@@ -1,11 +1,9 @@
 package com.beniregev.javaspringcrudexample.controller;
 
 import com.beniregev.javaspringcrudexample.model.Client;
-import com.beniregev.javaspringcrudexample.model.ClientRegisterRequest;
-import com.beniregev.javaspringcrudexample.model.OnlineClientResponse;
-import com.beniregev.javaspringcrudexample.model.ResponseEntityGeneral;
+import com.beniregev.javaspringcrudexample.model.dtos.ClientRegisterRequest;
+import com.beniregev.javaspringcrudexample.model.dtos.ResponseEntityGeneral;
 import com.beniregev.javaspringcrudexample.service.ClientService;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +23,7 @@ import java.util.Objects;
  * Delete client by email
  */
 @RestController
+@RequestMapping(value = "/api")
 @CrossOrigin(origins = {
         "https://localhost:4200/",
         "https://localhost:8080/",
@@ -95,8 +94,15 @@ public class ClientController {
 
     @PostMapping("/clients")
     public ResponseEntity<ResponseEntityGeneral> createClient(@RequestBody ClientRegisterRequest requestBody) {
-        //.(user != null ? HttpStatus.CREATED : HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-        return null;
+        Client client = clientService.createClient(requestBody);
+        response = ResponseEntityGeneral
+                .builder()
+                .result(client)
+                .success(Objects.nonNull(client))
+                .httpStatus(client != null ? HttpStatus.CREATED : HttpStatus.NOT_MODIFIED)
+                .build();
+
+        return new ResponseEntity<>(response, response.getHttpStatus());
     }
 
     @PutMapping("/clients/{id}")
@@ -110,16 +116,13 @@ public class ClientController {
         return null;
     }
 
-    @PostMapping("clients")
-    public ResponseEntity<ResponseEntityGeneral> deleteClient(@RequestBody ClientRegisterRequest requestBody) {
-        //.(user != null ? HttpStatus.CREATED : HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+    @DeleteMapping("/clients/{username}")
+    public ResponseEntity<ResponseEntityGeneral> deleteClientByUsername(@PathVariable String username) {
         return null;
     }
 
-    @PostMapping("clients")
-    public ResponseEntity<ResponseEntityGeneral> deleteClientByUsername(@RequestBody ClientRegisterRequest requestBody) {
-        //.(user != null ? HttpStatus.CREATED : HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-        return null;
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Server is saying \"Hello\"";
     }
-
 }
