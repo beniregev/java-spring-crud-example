@@ -1,15 +1,14 @@
 package com.beniregev.javaspringcrudexample.service;
 
 import com.beniregev.javaspringcrudexample.model.Client;
-import com.beniregev.javaspringcrudexample.model.ClientRegisterRequest;
-import com.beniregev.javaspringcrudexample.model.ClientUpdateRequest;
+import com.beniregev.javaspringcrudexample.model.dtos.ClientRegisterRequest;
+import com.beniregev.javaspringcrudexample.model.dtos.ClientUpdateRequest;
 import com.beniregev.javaspringcrudexample.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ClientService {
