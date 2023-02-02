@@ -1,4 +1,4 @@
-package com.beniregev.javaspringcrudexample.model;
+package com.beniregev.javaspringcrudexample.model.dtos;
 
 import lombok.*;
 import org.hibernate.Hibernate;

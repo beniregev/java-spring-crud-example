@@ -1,5 +1,6 @@
-package com.beniregev.javaspringcrudexample.model;
+package com.beniregev.javaspringcrudexample.model.dtos;
 
+import com.beniregev.javaspringcrudexample.model.Client;
 import lombok.Data;
 
 import java.util.Date;
