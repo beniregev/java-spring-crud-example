@@ -1,5 +1,6 @@
 package com.beniregev.javaspringcrudexample.model;
 
+import com.beniregev.javaspringcrudexample.model.dtos.ClientRegisterRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Table
+@Table(name = "client")
 @NoArgsConstructor
 public class Client {
     @Id
